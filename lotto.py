@@ -17,8 +17,12 @@ except ValueError:
     print("Wrong")
 
 if numbersCorrect:
-    win = 0
-    loose = 0
+    three=0
+    four=0
+    five=0
+    six=0
+    loose=0
+    wonMoney=0
     for j in range(0, 20000):
         lottoNumbers = []
         for i in range(0, 100000):
@@ -27,15 +31,29 @@ if numbersCorrect:
                 lottoNumbers.append(selectedNumber)
             if len(lottoNumbers) == 6:
                 break
-        success = True
 
+        success = True
+        win=0
         for number in userNumbers:
-            if number not in lottoNumbers:
-                success = False
-                break
-        if success:
-            win += 1
+            if number in lottoNumbers:
+                win += 1
+
+        if win == 3:
+            three += 1
+            wonMoney += 20
+        elif win == 4:
+            four += 1
+            wonMoney += 200
+        elif win == 5:
+            five += 1
+            wonMoney += 6000
+        elif win == 6:
+            six += 1
+            wonMoney += 2000000
         else:
             loose += 1
 
-    print("Win= ", win, "Loose =", loose)
+    ticketCost = 20000*3
+    print ("Results:")
+    print("3 numbers: ", three, " Four numbers: ", four, " Five numbers: ", five, " Six numbers: ",
+          six, " Number of lost tickets: ", loose, "Total money earned: ", wonMoney, "Total ticket cost: ", ticketCost)
