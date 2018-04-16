@@ -1,12 +1,12 @@
 import random
 
 numbersCorrect = True
-print("Podaj liczby")
+print("Enter 6 integer numbers in range 1-49 separated by whitespace: ")
 try:
     userNumbers = [int(x) for x in input().split()]
     for i in userNumbers:
         if (i < 1) or (i > 49):
-            print("Wrong number")
+            print("Number out of range!")
             numbersCorrect = False
             break
     if len(userNumbers) != len(set(userNumbers)):
@@ -14,18 +14,20 @@ try:
         numbersCorrect = False
 except ValueError:
     numbersCorrect = False
-    print("Wrong")
+    print("Numbers must be integer!")
 
 if numbersCorrect:
-    three=0
-    four=0
-    five=0
-    six=0
-    loose=0
-    wonMoney=0
-    for j in range(0, 20000):
+    print("Enter amount of lotteries: ")
+    lotteries = int(input())
+    three = 0
+    four = 0
+    five = 0
+    six = 0
+    loss = 0
+    wonMoney = 0
+    for j in range(0, lotteries):
         lottoNumbers = []
-        for i in range(0, 100000):
+        for i in range(0, 1000000):
             selectedNumber = random.randint(1, 49)
             if selectedNumber not in lottoNumbers:
                 lottoNumbers.append(selectedNumber)
@@ -33,7 +35,7 @@ if numbersCorrect:
                 break
 
         success = True
-        win=0
+        win = 0
         for number in userNumbers:
             if number in lottoNumbers:
                 win += 1
@@ -51,9 +53,11 @@ if numbersCorrect:
             six += 1
             wonMoney += 2000000
         else:
-            loose += 1
+            loss += 1
 
-    ticketCost = 20000*3
-    print ("Results:")
-    print("3 numbers: ", three, " Four numbers: ", four, " Five numbers: ", five, " Six numbers: ",
-          six, " Number of lost tickets: ", loose, "Total money earned: ", wonMoney, "Total ticket cost: ", ticketCost)
+    ticketCost = lotteries*3
+
+    print("Results:")
+    print("Three numbers: ", three, "\nFour numbers: ", four, "\nFive numbers: ", five, "\nSix numbers: ",
+          six, "\nNumber of lost coupons: ", loss, "\nTotal won money: ", wonMoney, "\nTotal coupons' cost: ",
+          ticketCost)
